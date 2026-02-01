@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iron Lady – Program Information</title>
+</head>
+<body>
+
+    <h2>Iron Lady – Program Information Desk</h2>
+
+    <p>
+        This page helps users understand Iron Lady programs based on their profile.
+    </p>
+
+    <input type="text" id="query" placeholder="Enter profile: student, fresher, working professional">
+    <button onclick="getProgramInfo()">Get Details</button>
+
+    <p id="response"></p>
+
+    <script>
+        function getProgramInfo() {
+            const userInput = document.getElementById("query").value;
+
+            fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("response").innerText = data.reply;
+            });
+        }
+    </script>
+
+</body>
+</html>

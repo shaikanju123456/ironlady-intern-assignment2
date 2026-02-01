@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iron Lady Student Manager</title>
+</head>
+<body>
+    <h2>Add Student</h2>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Name" required><br><br>
+        <input type="email" name="email" placeholder="Email" required><br><br>
+
+        <select name="stage">
+            <option>Student</option>
+            <option>Fresher</option>
+            <option>Professional</option>
+        </select><br><br>
+
+        <input type="text" name="interest" placeholder="Interest Area"><br><br>
+
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Registered Students</h2>
+
+    <ul>
+        {% for student in students %}
+            <li>
+                {{ student.name }} - {{ student.email }} - {{ student.stage }} - {{ student.interest }}
+                <a href="/delete/{{ student.id }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
