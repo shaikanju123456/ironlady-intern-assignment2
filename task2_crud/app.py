@@ -28,6 +28,29 @@ def index():
     conn.close()
 
     return render_template("index.html", students=students)
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+    conn = get_db_connection()
+    student = conn.execute(
+        "SELECT * FROM students WHERE id = ?", (id,)
+    ).fetchone()
+
+    if request.method == "POST":
+        name = request.form["name"]
+        email = request.form["email"]
+        stage = request.form["stage"]
+        interest = request.form["interest"]
+
+        conn.execute(
+            "UPDATE students SET name=?, email=?, stage=?, interest=? WHERE id=?",
+            (name, email, stage, interest, id)
+        )
+        conn.commit()
+        conn.close()
+        return redirect("/")
+
+    conn.close()
+    return render_template("edit.html", student=student)
 
 @app.route("/delete/<int:id>")
 def delete(id):

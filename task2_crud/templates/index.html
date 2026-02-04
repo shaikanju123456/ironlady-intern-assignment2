@@ -26,9 +26,12 @@
     <ul>
         {% for student in students %}
             <li>
-                {{ student.name }} - {{ student.email }} - {{ student.stage }} - {{ student.interest }}
-                <a href="/delete/{{ student.id }}">Delete</a>
+    {{ student.name }} - {{ student.email }} - {{ student.stage }} - {{ student.interest }}
+             <a href="/edit/{{ student.id }}">Edit</a>
+    |
+               <a href="/delete/{{ student.id }}">Delete</a>
             </li>
+
         {% endfor %}
     </ul>
 

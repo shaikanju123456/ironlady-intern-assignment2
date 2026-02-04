@@ -27,9 +27,9 @@
                 },
                 body: JSON.stringify({ query: userInput })
             })
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
-                document.getElementById("response").innerText = data.reply;
+                document.getElementById("response").innerText = data.response;
             });
         }
     </script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+</head>
+<body>
+
+<h2>Edit Student</h2>
+
+<form method="POST">
+    <input type="text" name="name" value="{{ student.name }}" required><br><br>
+
+    <input type="email" name="email" value="{{ student.email }}" required><br><br>
+
+    <select name="stage">
+        <option {{ 'selected' if student.stage == 'Student' }}>Student</option>
+        <option {{ 'selected' if student.stage == 'Fresher' }}>Fresher</option>
+        <option {{ 'selected' if student.stage == 'Professional' }}>Professional</option>
+    </select><br><br>
+
+    <input type="text" name="interest" value="{{ student.interest }}"><br><br>
+
+    <button type="submit">Update</button>
+</form>
+
+<a href="/">Back</a>
+
+</body>
+</html>

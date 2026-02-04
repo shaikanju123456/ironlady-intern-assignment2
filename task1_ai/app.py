@@ -8,24 +8,19 @@ def home():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    user_input = request.json["query"]
-    query = user_input.lower()
+    data = request.get_json()
+    query = data.get("query", "").lower()
 
     if "student" in query:
-        response = "Iron Lady offers leadership and career readiness programs designed for students to build confidence, communication skills, and career clarity."
-
+        reply = "Iron Lady offers leadership and career readiness programs for students."
     elif "fresher" in query:
-         response = "For freshers, Iron Lady focuses on helping individuals transition from academics to the professional world through leadership training and mentoring."
+        reply = "Iron Lady supports freshers with career clarity and professional skills."
+    elif "working" in query or "professional" in query:
+        reply = "Iron Lady provides leadership growth programs for working professionals."
+    else:
+        reply = "Please enter student, fresher, or working professional."
 
-    elif "professional" in query:
-         response = "Working professionals can benefit from Iron Lady’s leadership programs that focus on growth, decision-making, and career advancement."
-
-    else:    
-        response = "Please enter student, fresher, or working professional to know more about relevant programs."
-
-            
-
-    return jsonify({"reply": response})
+    return jsonify({"response": reply})
 
 if __name__ == "__main__":
     app.run(debug=True)
